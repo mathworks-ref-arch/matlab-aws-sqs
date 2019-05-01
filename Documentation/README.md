@@ -9,6 +9,5 @@
 6. [Building the SDK](Rebuild.md)
 7. [API Documentation](SQSApidoc.md)
 
-------------
 
 [//]: #  (Copyright 2019 The MathWorks, Inc.)
