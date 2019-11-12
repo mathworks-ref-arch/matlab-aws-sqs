@@ -1,7 +1,15 @@
 # MATLAB Interface *for AWS SQS*
 # Release Notes
 
-## Release 0.1.2 (21st Jun 2019)
+## Release 0.1.3 (5th November 2019)
+* Updated AWS SDK version to 1.11.567
+* Improved pom.xml file
+* Documentation improvements
+* Added CreateQueueResult getQueueUrl method
+* Added Message getBody, getMessageId and getReceiptHandle methods
+* Added SendMessageResult getMessageId method
+
+## Release 0.1.2 (21st June 2019)
 * Updated the security notice
 
 ## Release 0.1.1 (15th May 2019)
@@ -17,4 +25,4 @@
 ## Release 0.0.1 (September 2018)
 * Initial release Supporting SQS
 
-[//]: #  (Copyright 2018 The MathWorks, Inc.)
+[//]: #  (Copyright 2019 The MathWorks, Inc.)

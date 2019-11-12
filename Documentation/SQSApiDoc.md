@@ -552,12 +552,11 @@
    * Specify TCP socket buffer size hints
   (Only limited proxy related methods are currently available)
  
-  Example:
+  Example, in this case using an s3 client:
     s3 = aws.s3.Client();
     s3.clientConfiguration.setProxyHost('proxyHost','myproxy.example.com');
     s3.clientConfiguration.setProxyPort(8080);
     s3.initialize();
- 
 
     Reference page in Doc Center
        doc aws.ClientConfiguration
@@ -568,13 +567,14 @@
 ```
 ### @ClientConfiguration/setProxyHost.m
 ```notalanguage
-  SETPROXYHOST Sets the optional proxy host the client will connect through.
+  SETPROXYHOST Sets the optional proxy host the client will connect through
   This is based on the setting in the MATLAB preferences panel. If the host
   is not set there on Windows then the Windows system preferences will be
-  used. The proxy settings may vary based on the URL, thus a sample URL
-  should be provided if a specific URL is not known https://s3.amazonaws.com
-  is a useful default as it is likely to match the relevant proxy selection
-  rules.
+  used. Though it is not normally the case proxy settings may vary based on the
+  destination URL, if this is the case a URL should be provided for a specific
+  service. If a URL is not provided then https://s3.amazonaws.com is used as
+  a default and is likely to match the relevant proxy selection rules for AWS
+  traffic.
  
   Examples:
  
@@ -585,55 +585,52 @@
     To have the proxy host automatically set based on the given URL:
         clientConfig.setProxyHost('autoURL','https://examplebucket.amazonaws.com');
  
-    To force the value of the proxy host TO a given value, e.g. myproxy.example.com:
+    To force the value of the proxy host to a given value, e.g. myproxy.example.com:
         clientConfig.setProxyHost('proxyHost','myproxy.example.com');
     Note this does not overwrite the value set in the preferences panel.
  
-  The s3 client initialization call will invoke setProxyHost();
-  to set preference based on the MATLAB preference if the proxyHost value is not
-  an empty value.
- 
+  The client initialization call will invoke setProxyHost() to set a value based
+  on the MATLAB preference if the proxyHost value is not to an empty value.
 
 
 
 ```
 ### @ClientConfiguration/setProxyPassword.m
 ```notalanguage
-  SETPROXYPASSWORD Sets the optional proxy password.
-  This is based on the setting in the MATLAB preferences panel. If the
-  preferences password is not set then on Windows the OS system preferences
-  will be used.
+  SETPROXYPASSWORD Sets the optional proxy password
+  This is based on the setting in the MATLAB preferences panel. If the password
+  is not set there on Windows then the Windows system preferences will be
+  used.
  
   Examples:
  
     To set the password to a given value:
-        clientConfig.setProxyPassword('2312sdsdes?$!%');
+        clientConfig.setProxyPassword('myProxyPassword');
     Note this does not overwrite the value set in the preferences panel.
  
     To set the password automatically based on provided preferences:
         clientConfig.setProxyPassword();
  
-  The s3 client initialization call will invoke setProxyPassword();
-  to set preference based on the MATLAB preference if the proxyPassword value is
-  not an empty value.
+  The client initialization call will invoke setProxyPassword() to set
+  a value based on the MATLAB preference if the proxy password value is set.
  
   Note, it is bad practice to store credentials in code, ideally this value
   should be read from a permission controlled file or other secure source
   as required.
- 
 
 
 
 ```
 ### @ClientConfiguration/setProxyPort.m
 ```notalanguage
-  SETPROXYPORT Sets the optional proxy port the client will connect through.
+  SETPROXYPORT Sets the optional proxy port the client will connect through
   This is normally based on the setting in the MATLAB preferences panel. If the
   port is not set there on Windows then the Windows system preferences will be
-  used. The proxy settings may vary based on the URL, thus a sample URL
-  should be provided if a specific URL is not known https://s3.amazonaws.com
-  is a useful default as it is likely to match the relevant proxy selection
-  rules.
+  used. Though it is not normally the case proxy settings may vary based on the
+  destination URL, if this is the case a URL should be provided for a specific
+  service. If a URL is not provided then https://s3.amazonaws.com is used as
+  a default and is likely to match the relevant proxy selection rules for AWS
+  traffic.
  
   Examples:
  
@@ -648,38 +645,35 @@
         clientConfig.setProxyPort(8080);
     Note this does not alter the value held set in the preferences panel.
  
-  The s3 client initialization call will invoke setProxyPort();
-  to set preference based on the MATLAB preference if the proxyPort value is not
-  an empty value.
- 
+  The client initialization call will invoke setProxyPort() to set a value based
+  on the MATLAB preference if the proxy port value is not an empty value.
 
 
 
 ```
 ### @ClientConfiguration/setProxyUsername.m
 ```notalanguage
-  SETPROXYUSERNAME Sets the optional proxy username.
-  This is based on the setting in the MATLAB preferences panel. If the
-  username is not set there on Windows then the Windows system preferences
-  will be used.
+  SETPROXYUSERNAME Sets the optional proxy username
+  This is based on the setting in the MATLAB preferences panel. If the username
+  is not set there on Windows then the Windows system preferences will be
+  used.
  
   Examples:
  
      To set the username to a given value:
-         clientConfig.setProxyUsername('JoeProxyUser');
+         clientConfig.setProxyUsername('myProxyUsername');
      Note this does not overwrite the value set in the preferences panel.
  
      To set the password automatically based on provided preferences:
          clientConfig.setProxyUsername();
  
-  The s3 client initialization call will invoke setProxyUsername();
+  The client initialization call will invoke setProxyUsername();
   to set preference based on the MATLAB preference if the proxyUsername value is
   not an empty value.
  
   Note it is bad practice to store credentials in code, ideally this value
   should be read from a permission controlled file or other secure source
   as required.
- 
 
 
 

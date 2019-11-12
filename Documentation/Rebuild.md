@@ -8,12 +8,12 @@ $ cd matlab-aws-sqs/Software/Java
 $ mvn clean verify package
 ```
 
-The above pom file currently references version *1.11.367* of the AWS SDK:
+The above pom file currently references version *1.11.567* of the AWS SDK:
 ```
 <dependency>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-java-sdk-bom</artifactId>
-  <version>1.11.367</version>
+  <version>1.11.567</version>
   <type>pom</type>
   <scope>import</scope>
 </dependency>
@@ -24,13 +24,13 @@ To build with a more recent version of the SDK, amend the pom file to a specific
 <dependency>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-java-sdk-bom</artifactId>
-  <version>[1.11.367,)</version>
+  <version>[1.11.567,)</version>
   <type>pom</type>
   <scope>import</scope>
 </dependency>
 ```
 
 The output of the build is a JAR file that is placed in *Software/MATLAB/lib/jar* folder for use by MATLAB.
--------------
 
-[//]: #  (Copyright 2018 The MathWorks, Inc.)
+
+[//]: #  (Copyright 2018-2019 The MathWorks, Inc.)
