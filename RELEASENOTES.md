@@ -1,6 +1,10 @@
 # MATLAB Interface *for AWS SQS*
 # Release Notes
 
+## Release 0.1.4 (5th March 2019)
+* Updated license
+* Updated security notice
+
 ## Release 0.1.3 (5th November 2019)
 * Updated AWS SDK version to 1.11.567
 * Improved pom.xml file

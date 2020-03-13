@@ -72,6 +72,5 @@ client.clientConfiguration.setProxyPassword('myProxyPassword');
 
 If a proxy server is being used, then the proxy values need to be configured as shown, this should be done before the client is initialized.
 
-------------
 
 [//]: #  (Copyright 2018 The MathWorks, Inc.)
