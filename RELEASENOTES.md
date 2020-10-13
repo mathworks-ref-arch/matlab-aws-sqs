@@ -1,6 +1,9 @@
 # MATLAB Interface *for AWS SQS*
 # Release Notes
 
+## Release 0.1.5 (13th Oct 2020)
+* Bumped junit version
+
 ## Release 0.1.4 (5th March 2019)
 * Updated license
 * Updated security notice
