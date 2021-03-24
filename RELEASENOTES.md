@@ -1,7 +1,11 @@
-# MATLAB Interface *for AWS SQS*
+# MATLAB Interface *for Amazon SQS*
 # Release Notes
+## Release 0.1.6 (22nd March 2021)
+* Added ReceiveMessageRequest support
+* Updated pom file to support builds with recent JDKs
+* Updated to support integrations testing
 
-## Release 0.1.5 (13th Oct 2020)
+## Release 0.1.5 (13th October 2020)
 * Bumped junit version
 
 ## Release 0.1.4 (5th March 2019)
@@ -32,4 +36,4 @@
 ## Release 0.0.1 (September 2018)
 * Initial release Supporting SQS
 
-[//]: #  (Copyright 2019 The MathWorks, Inc.)
+[//]: #  (Copyright 2019-2021 The MathWorks, Inc.)

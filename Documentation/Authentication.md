@@ -48,7 +48,7 @@ exists on the MATLAB path. The contents of this file need to be of the format:
     "region" : "us-west-1"
 }
 ```
-Once configured, this package is ready to connect to AWS SQS™. The order of the credential file entries is not significant.
+Once configured, this package is ready to connect to Amazon SQS™. The order of the credential file entries is not significant.
 
 
 ## Using temporary security credentials
@@ -84,4 +84,4 @@ For more information see: <https://docs.aws.amazon.com/cli/latest/reference/sts/
 
 ------------
 
-[//]: #  (Copyright 2019 The MathWorks, Inc.)
+[//]: #  (Copyright 2019-2021 The MathWorks, Inc.)

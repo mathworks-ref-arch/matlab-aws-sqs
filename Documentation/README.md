@@ -1,4 +1,4 @@
-## MATLAB Interface *for AWS SQS*
+## MATLAB Interface *for Amazon SQS*
 
 ## Contents
 1. [Installation](Installation.md)
@@ -10,4 +10,4 @@
 7. [API Documentation](SQSApidoc.md)
 
 
-[//]: #  (Copyright 2019 The MathWorks, Inc.)
+[//]: #  (Copyright 2019-2021 The MathWorks, Inc.)

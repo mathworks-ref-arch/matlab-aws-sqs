@@ -7,7 +7,7 @@ function initStat = initialize(obj, varargin)
 %    sqs = aws.sqs.Client();
 %    sqs.intialize();
 
-% Copyright 2019 The MathWorks, Inc.
+% Copyright 2019-2021 The MathWorks, Inc.
 
 %% Imports
 % Exceptions
@@ -25,7 +25,7 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain
 
 % Builders
-% Import AWS SQS client builder
+% Import Amazon SQS client builder
 import com.amazonaws.services.sqs.AmazonSQS
 import com.amazonaws.services.sqs.AmazonSQSClient
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder

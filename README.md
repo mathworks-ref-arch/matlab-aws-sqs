@@ -1,12 +1,12 @@
-# MATLAB Interface *for AWS SQS*
+# MATLAB Interface *for Amazon SQS*
 
-MATLAB® interface for the Amazon Web Services SQS™ service.
+MATLAB® interface for the Amazon SQS™ service.
 
 ## Requirements
 ### MathWorks products
 * Requires MATLAB release R2017a or later.
 * AWS Common utilities found at https://github.com/mathworks-ref-arch/matlab-aws-common
-* (Recommended) MATLAB Interface *for AWS SNS™* found at https://github.com/mathworks-ref-arch/matlab-aws-sns
+* (Recommended) MATLAB Interface *for Amazon SNS™* found at https://github.com/mathworks-ref-arch/matlab-aws-sns
 
 ### 3rd party products
 * Amazon Web Services account   
@@ -14,7 +14,7 @@ MATLAB® interface for the Amazon Web Services SQS™ service.
 To build a required JAR file:   
 * [Maven](https://maven.apache.org/)
 * JDK 7
-* [AWS SDK for Java](https://aws.amazon.com/sdk-for-java/) (version 1.11.367 or later)
+* [AWS SDK for Java](https://aws.amazon.com/sdk-for-java/) (version 1.11.567 or later)
 
 ## Getting Started
 Please refer to the [Documentation](Documentation/README.md) to get started.
@@ -80,7 +80,7 @@ sqs.shutdown;
 4. [MATLAB Parallel Server™](https://www.mathworks.com/products/distriben.html) (R2017a or later)
 
 ## License
-The license for the MATLAB Interface *for AWS SQS* is available in the [LICENSE.md](LICENSE.md) file in this GitHub repository. This package uses certain third-party content which is licensed under separate license agreements. See the [pom.xml](Software/Java/pom.xml) file for third-party software downloaded at build time.
+The license for the MATLAB Interface *for Amazon SQS* is available in the [LICENSE.md](LICENSE.md) file in this GitHub repository. This package uses certain third-party content which is licensed under separate license agreements. See the [pom.xml](Software/Java/pom.xml) file for third-party software downloaded at build time.
 
 ## Enhancement Request
 Provide suggestions for additional features or capabilities using the following link:   
@@ -89,4 +89,4 @@ https://www.mathworks.com/products/reference-architectures/request-new-reference
 ## Support
 Email: `mwlab@mathworks.com` or please log an issue.    
 
-[//]: #  (Copyright 2018 The MathWorks, Inc.)
+[//]: #  (Copyright 2018-2021 The MathWorks, Inc.)

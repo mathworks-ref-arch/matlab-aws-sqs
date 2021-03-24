@@ -1,5 +1,5 @@
 function createQueueResult = createQueue(obj, queueName)
-% CREATEQUEUE Creates an AWS SQS queue
+% CREATEQUEUE Creates an Amazon SQS queue
 % Create a new standard queue, FIFO queues are not currently supported.
 % To create a queue, provide a queue name that adheres to queue name
 % restrictions and is unique within the queue scope.
@@ -15,7 +15,7 @@ function createQueueResult = createQueue(obj, queueName)
 %    createQueueResult = sqs.createQueue('MyQueueName');
 %    queueUrl = createQueueResult.getQueueUrl();
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2021 The MathWorks, Inc.
 
 if ~ischar(queueName)
     logObj = Logger.getLogger();

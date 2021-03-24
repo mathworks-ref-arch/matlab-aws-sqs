@@ -1,5 +1,5 @@
 function deleteQueueResult = deleteQueue(obj, queueUrl)
-% DELETEQUEUE Delete an AWS SQS queue
+% DELETEQUEUE Delete an Amazon SQS queue
 % Deletes the SQS queue specified by the queue URL, regardless of the queue's
 % contents. If the specified queue does not exist, SQS throws a
 % QueueDoesNotExistException. The deletion process takes up to 60 seconds and
@@ -10,7 +10,7 @@ function deleteQueueResult = deleteQueue(obj, queueUrl)
 %    deleteQueueResult = sqs.deleteQueue(queueUrl);
 %    tf = strcmp(deleteQueueResult.toString(), '{}'));
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2021 The MathWorks, Inc.
 
 % Return error if input is not character vector
 if ~ischar(queueUrl)

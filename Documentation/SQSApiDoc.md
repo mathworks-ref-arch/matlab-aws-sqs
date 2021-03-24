@@ -1,7 +1,7 @@
-# MATLAB Interface *for AWS SQS* API documentation
+# MATLAB Interface *for Amazon SQS* API documentation
 
 
-## AWS SQS Interface Objects and Methods:
+## Amazon SQS Interface Objects and Methods:
 * @Client
 
 
@@ -12,7 +12,7 @@
 
 ### @Client/Client.m
 ```notalanguage
-  CLIENT Object to represent an AWS SQS client
+  CLIENT Object to represent an Amazon SQS client
   The client is used to carry out operations with the SQS service
  
   Example:
@@ -26,7 +26,7 @@
      % Shutdown the client when no longer needed
      sqs.shutdown();
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.Client
        doc aws.sqs.Client
 
 
@@ -35,7 +35,7 @@
 ```
 ### @Client/createQueue.m
 ```notalanguage
-  CREATEQUEUE Creates an AWS SQS queue
+  CREATEQUEUE Creates an Amazon SQS queue
   Create a new standard queue, FIFO queues are not currently supported.
   To create a queue, provide a queue name that adheres to queue name
   restrictions and is unique within the queue scope.
@@ -74,7 +74,7 @@
 ```
 ### @Client/deleteQueue.m
 ```notalanguage
-  DELETEQUEUE Delete an AWS SQS queue
+  DELETEQUEUE Delete an Amazon SQS queue
   Deletes the SQS queue specified by the queue URL, regardless of the queue's
   contents. If the specified queue does not exist, SQS throws a
   QueueDoesNotExistException. The deletion process takes up to 60 seconds and
@@ -151,6 +151,18 @@
      receiveMessageResult = sqs.receiveMessage(queueUrl);
      messages = receiveMessageResult.getMessages();
      messageBody = messages{1}.getBody();
+ 
+   Or
+ 
+     receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+     % The Queue URL should always be set
+     receiveMessageRequest.setQueueUrl(queueUrl);
+     % Receive from 1 to 10 messages
+     % The number of messages returned may be less than the number requested
+     receiveMessageRequest.setMaxNumberOfMessages(3);
+     receiveMessageResult = sqs.receiveMessage(receiveMessageRequest);
+     messages = receiveMessageResult.getMessages();
+     messageBody = messages{1}.getBody();
 
 
 
@@ -213,13 +225,14 @@
 ```
 
 ------
-## AWS SQS Interface +model Objects and Methods:
+## Amazon SQS Interface +model Objects and Methods:
 * @CreateQueueResult
 * @DeleteMessageResult
 * @DeleteQueueResult
 * @GetQueueAttributesResult
 * @ListQueuesResult
 * @Message
+* @ReceiveMessageRequest
 * @ReceiveMessageResult
 * @SendMessageResult
 * @SetQueueAttributesResult
@@ -239,7 +252,7 @@
      createQueueResult = sqs.createQueue(uniqName);
      queueUrl = createQueueResult.getQueueUrl();
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.CreateQueueResult
        doc aws.sqs.model.CreateQueueResult
 
 
@@ -268,7 +281,7 @@
      deleteMessageResult = sqs.deleteMessage(queueUrl, receiptHandle);
      tf = strcmp(deleteMessageResult.toString(), '{}');
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.DeleteMessageResult
        doc aws.sqs.model.DeleteMessageResult
 
 
@@ -300,7 +313,7 @@
      deleteQueueResult = sqs.deleteQueue(queueUrl);
      tf = strcmp(deleteQueueResult.toString(), '{}');
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.DeleteQueueResult
        doc aws.sqs.model.DeleteQueueResult
 
 
@@ -332,7 +345,7 @@
      getQueueAttributesResult = sqs.getQueueAttributes(queueUrl, keySet);
      attributes = getQueueAttributesResult.getAttributes();
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.GetQueueAttributesResult
        doc aws.sqs.model.GetQueueAttributesResult
 
 
@@ -367,7 +380,7 @@
      listQueuesResult = sqs.listQueues();
      urlList = listQueuesResult.getQueueUrls();
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.ListQueuesResult
        doc aws.sqs.model.ListQueuesResult
 
 
@@ -406,7 +419,7 @@
         body = messages{n}.getBody();
      end
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.Message
        doc aws.sqs.model.Message
 
 
@@ -442,6 +455,134 @@
 ------
 
 
+## @ReceiveMessageRequest
+
+### @ReceiveMessageRequest/ReceiveMessageRequest.m
+```notalanguage
+  RECEIVEMESSAGEREQUEST Object to represent request using a receiveMessage call
+  This class can be used to configure a message receive request for example to
+  retrieve more than the default one message per call.
+ 
+  Example:
+    receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+    % The Queue URL should always be set
+    receiveMessageRequest.setQueueUrl(queueUrl);
+    % Receive from 1 to 10 messages
+    % The number of messages returned may be less than the number requested
+    receiveMessageRequest.setMaxNumberOfMessages(3);
+    receiveMessageResult = sqs.receiveMessage(receiveMessageRequest);
+
+    Documentation for aws.sqs.model.ReceiveMessageRequest
+       doc aws.sqs.model.ReceiveMessageRequest
+
+
+
+
+```
+### @ReceiveMessageRequest/setAttributeNames.m
+```notalanguage
+  SETATTRIBUTENAMES Sets attributes to be returned along with each message
+  A cell array  of attributes that need to be returned along with each message.
+  The returned attributes include:
+    All: all values
+    ApproximateFirstReceiveTimestamp: the time the message was first received
+                                      from the queue (epoch time in milliseconds)
+    ApproximateReceiveCount: the number of times a message has been received
+                             across all queues but not deleted
+    AWSTraceHeader: Returns the AWS X-Ray trace header string
+    SenderId:
+      For an IAM user, the IAM user ID, e.g. ABCDEFGHI1JKLMNOPQ23R
+      For an IAM role, the IAM role ID, e.g. ABCDE1F2GH3I4JK5LMNOP:i-a123b456
+    SentTimestamp: the time the message was sent to the queue
+                 (epoch time in milliseconds)
+    MessageDeduplicationId: returns the value provided by the producer that calls
+                          the SendMessage action
+    MessageGroupId: the value provided by the producer that calls the SendMessage
+                  action. Messages with the same MessageGroupId are returned in
+                  sequence
+    SequenceNumber: the value provided by Amazon SQS
+ 
+  Example:
+     receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+     receiveMessageRequest.setQueueUrl(queueUrl);
+     attributeNames = {'ApproximateReceiveCount', 'SentTimestamp'};
+     receiveMessageRequest.setAttributeNames(attributeNames);
+
+
+
+```
+### @ReceiveMessageRequest/setMaxNumberOfMessages.m
+```notalanguage
+  setMaxNumberOfMessages Set the maximum number of messages to return
+  SQS never returns more messages than this value however, fewer messages might
+  be returned). Valid values: 1 to 10. Default: 1. 
+ 
+  Example:
+    receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+    receiveMessageRequest.setQueueUrl(queueUrl);
+    % Receive from 1 to 10 messages
+    % The number of messages returned may be less than the number requested
+    receiveMessageRequest.setMaxNumberOfMessages(3);
+    receiveMessageResult = sqs.receiveMessage(receiveMessageRequest);
+
+
+
+```
+### @ReceiveMessageRequest/setQueueUrl.m
+```notalanguage
+  SETQUEUEURL Set URL of SQS queue from which messages are received
+ 
+  Example:
+    receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+    receiveMessageRequest.setQueueUrl(queueUrl);
+
+
+
+```
+### @ReceiveMessageRequest/setReceiveRequestAttemptId.m
+```notalanguage
+  SETRECEIVEREQUESTATTEMPTID Applies only to FIFO (first-in-first-out) queues
+  Set to provide the receive request deduplication Id
+ 
+  Example:
+    receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+    receiveMessageRequest.setReceiveRequestAttemptId('1');
+
+
+
+```
+### @ReceiveMessageRequest/setVisibilityTimeout.m
+```notalanguage
+  SETVISIBILITYTIMEOUT Duration that the received messages are hidden
+  Messages are hidden from subsequent retrieve requests after being retrieved by
+  a ReceiveMessage request. The visibilityTimeout is given in seconds.
+ 
+  Example:
+    receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+    receiveMessageRequest.setVisibilityTimeout(10);
+
+
+
+```
+### @ReceiveMessageRequest/setWaitTimeSeconds.m
+```notalanguage
+  SETWAITTIMESECONDS Duration call waits for a message to arrive before returning
+  If a message is available, the call returns sooner than WaitTimeSeconds.
+  If no messages are available and the wait time expires, the call returns
+  successfully with an empty list of messages. The WaitTimeSeconds is given in
+  seconds.
+ 
+  Example:
+    receiveMessageRequest = aws.sqs.model.ReceiveMessageRequest();
+    receiveMessageRequest.setWaitTimeSeconds(10);
+
+
+
+```
+
+------
+
+
 ## @ReceiveMessageResult
 
 ### @ReceiveMessageResult/ReceiveMessageResult.m
@@ -452,7 +593,7 @@
      receiveMessageResult = sqs.receiveMessage(queueUrl);
      messages = receiveMessageResult.getMessages();
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.ReceiveMessageResult
        doc aws.sqs.model.ReceiveMessageResult
 
 
@@ -484,7 +625,7 @@
      sendMessageResult = sqs.sendMessage(queueUrl, messageBody);
      sentMessageId = sendMessageResult.getMessageId();
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.SendMessageResult
        doc aws.sqs.model.SendMessageResult
 
 
@@ -513,7 +654,7 @@
      setQueueAttributesResult = sqs.setQueueAttributes(queueUrl, M);
      tf = strcmp(setQueueAttributesResult.toString(), '{}');
 
-    Reference page in Doc Center
+    Documentation for aws.sqs.model.SetQueueAttributesResult
        doc aws.sqs.model.SetQueueAttributesResult
 
 
@@ -558,9 +699,35 @@
     s3.clientConfiguration.setProxyPort(8080);
     s3.initialize();
 
-    Reference page in Doc Center
+    Documentation for aws.ClientConfiguration
        doc aws.ClientConfiguration
 
+
+
+
+```
+### @ClientConfiguration/getNonProxyHosts.m
+```notalanguage
+  GETNONPROXYHOSTS Sets optional hosts accessed without going through the proxy
+  Returns either the nonProxyHosts set on this object, or if not provided,
+  returns the value of the Java system property http.nonProxyHosts.
+  Result is returned as a character vector.
+ 
+  Note the following caveat from the Amazon DynamoDB documentation:
+ 
+  We still honor this property even when getProtocol() is https, see
+  http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
+  This property is expected to be set as a pipe separated list. If neither are
+  set, returns the value of the environment variable NO_PROXY/no_proxy.
+  This environment variable is expected to be set as a comma separated list.
+
+
+
+```
+### @ClientConfiguration/setNonProxyHosts.m
+```notalanguage
+  SETNONPROXYHOSTS Sets optional hosts accessed without going through the proxy
+  Hosts should be specified as a character vector.
 
 
 
@@ -688,7 +855,7 @@
 ```notalanguage
   OBJECT Root object for all the AWS SDK objects
 
-    Reference page in Doc Center
+    Documentation for aws.Object
        doc aws.Object
 
 
@@ -882,4 +1049,4 @@
 
 ------------    
 
-[//]: # (Copyright 2019 The MathWorks, Inc.)
+[//]: # (Copyright 2018-2021 The MathWorks, Inc.)

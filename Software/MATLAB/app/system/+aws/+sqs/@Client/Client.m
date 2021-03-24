@@ -1,5 +1,5 @@
 classdef Client < aws.Object
-    % CLIENT Object to represent an AWS SQS client
+    % CLIENT Object to represent an Amazon SQS client
     % The client is used to carry out operations with the SQS service
     %
     % Example:
@@ -13,7 +13,7 @@ classdef Client < aws.Object
     %    % Shutdown the client when no longer needed
     %    sqs.shutdown();
 
-    % Copyright 2018 The MathWorks, Inc.
+    % Copyright 2018-2021 The MathWorks, Inc.
 
     properties
         % default to using the AWS provider chain
@@ -35,7 +35,7 @@ classdef Client < aws.Object
             write(logObj,'verbose','Creating Client');
             % error if JVM is not enabled or MATLAB is too old
             if ~usejava('jvm')
-                write(logObj,'error','MATLAB must be used with the JVM enabled to access AWS SQS');
+                write(logObj,'error','MATLAB must be used with the JVM enabled to access Amazon SQS');
             end
             if verLessThan('matlab','9.2') % R2017a
                 write(logObj,'error','MATLAB Release 2017a or newer is required');
