@@ -5,7 +5,7 @@ function initStat = initialize(obj, varargin)
 %
 % Example:
 %    sqs = aws.sqs.Client();
-%    sqs.intialize();
+%    sqs.initialize();
 
 % Copyright 2019-2021 The MathWorks, Inc.
 

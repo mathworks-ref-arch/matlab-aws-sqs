@@ -114,7 +114,7 @@
  
   Example:
      sqs = aws.sqs.Client();
-     sqs.intialize();
+     sqs.initialize();
 
 
 

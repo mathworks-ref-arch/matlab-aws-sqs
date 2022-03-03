@@ -1,5 +1,14 @@
-# MATLAB Interface *for Amazon SQS*
-# Release Notes
+# MATLAB Interface *for Amazon SQS* - Release Notes
+
+## Release 0.1.8 (3rd Mar 2022)
+* Updated pom.xml latest AWS 1.12.150 BOM
+
+## Release 0.1.7 (13th December 2021)
+
+* Updated pom.xml latest AWS 1.12.128 BOM to include log4j updates
+* Updated to JUNIT 4.3.2
+* Updated Maven shade plug version
+
 ## Release 0.1.6 (22nd March 2021)
 * Added ReceiveMessageRequest support
 * Updated pom file to support builds with recent JDKs
