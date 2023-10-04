@@ -70,7 +70,7 @@ end
 
 
 function iAddSQS(rootDir)
-iDisplayBanner('Adding MATLAB interface for AWS SQS Paths');
+iDisplayBanner('Adding MATLAB interface for Amazon SQS Paths');
 
 sqsDir = fullfile(rootDir,'Software','MATLAB');
 rootDirs={fullfile(sqsDir,'app'),true;...
